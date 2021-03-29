@@ -21,3 +21,11 @@ repos:
   rev: v4.3.21
   hooks:
   - id: isort
+- repo: local
+  hooks:
+  - id: pytest
+    name: pytest
+    stages: [ push ]
+    language: system
+    entry: pytest app/tests.py
+    types: [ python ]

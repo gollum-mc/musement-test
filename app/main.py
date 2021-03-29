@@ -39,7 +39,7 @@ async def print_data(response_data: ResponseData):
                         for i in range(FORECAST_DAYS)
                     ],
                 )
-            except KeyError or IndexError:
+            except KeyError:
                 text_second_part = Error.NO_FORECAST_DATA.value
             except IndexError:
                 text_second_part = Error.NO_FORECAST_DATA.value
@@ -54,10 +54,12 @@ async def get_data(session: aiohttp.ClientSession, city: CityInfo):
     try:
         async with session.get(get_url_for_city(city)) as res:
             res = await res.json()
-    except aiohttp.ClientConnectionError as error:
-        print(error)
-    except asyncio.TimeoutError as error:
-        print(error)
+    except aiohttp.ClientConnectionError as error_message:
+        error = str(error_message)
+        sys.stdout.write(error)
+    except asyncio.TimeoutError as error_message:
+        error = str(error_message)
+        sys.stdout.write(error)
 
     await print_data(ResponseData(city.name, res, error))
 
