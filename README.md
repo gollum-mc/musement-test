@@ -42,7 +42,7 @@ cd <name of the project>
 
 clone project repository
 ```
-git clone https://Gollum_mc@bitbucket.org/Gollum_mc/load-time-controller.git
+git clone https://github.com/gollum-mc/musement-test.git
 ```
 
 build a docker image - make sure you do not set the detached mode as it you will not be able to see the results 
