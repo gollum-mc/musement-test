@@ -56,10 +56,8 @@ async def get_data(session: aiohttp.ClientSession, city: CityInfo):
             res = await res.json()
     except aiohttp.ClientConnectionError as error_message:
         error = str(error_message)
-        sys.stdout.write(error)
     except asyncio.TimeoutError as error_message:
         error = str(error_message)
-        sys.stdout.write(error)
 
     await print_data(ResponseData(city.name, res, error))
 
