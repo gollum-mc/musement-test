@@ -23,9 +23,9 @@ repos:
   - id: isort
 - repo: local
   hooks:
-  - id: pytest
-    name: pytest
-    stages: [ push ]
-    language: system
+  - id: pytest-check
+    name: pytest-check
     entry: pytest app/tests.py
-    types: [ python ]
+    language: system
+    pass_filenames: false
+  always_run: true
