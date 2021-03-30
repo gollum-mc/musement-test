@@ -9,8 +9,11 @@ from app.errors import Error
 from app.structures import CityInfo, ResponseData
 from app.utils import get_data_from_url_synchronously, logged_method
 
-with open(".config.yaml") as ymlfile:
-    config = yaml.safe_load(ymlfile)
+try:
+    with open(".config.yaml") as ymlfile:
+        config = yaml.safe_load(ymlfile)
+except FileNotFoundError:
+    sys.exit(Error.NO_CONFIG_FILE.value)
 
 AIOHTTP_CLIENT_TIMEOUT = aiohttp.ClientTimeout(total=30)
 FORECAST_DAYS = config.get("forecast_days", 2)
